@@ -16,7 +16,7 @@ public class TicketServiceImp implements TicketService {
 	@Override
 	public Ticket saveTicket(Ticket ticket) {
 		// TODO Auto-generated method stub
-		System.out.print("Ticket data :"+ ticket.getId()+ticket.getName()+ticket.getCategories());
+		System.out.print("Ticket data :"+ ticket.getId()+ticket.getName()+ticket.getCategory_id());
 		ticketRepository.save(ticket);
 		return null;
 	}

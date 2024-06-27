@@ -14,7 +14,7 @@ import com.codebyarunyadav.chatbox.service.TicketServiceImp;
 @RestController
 //@Api(value = "CategoryAPI", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequestMapping("/pp")
-public class ProductController {
+public class TicketController {
 	@Autowired
 	TicketServiceImp TicketerviceImp;
 	@RequestMapping(method = RequestMethod.POST, value = "/ticket/add")

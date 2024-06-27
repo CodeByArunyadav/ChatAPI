@@ -38,8 +38,8 @@ public class Category {
 	private String categoryName;
 	 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categories", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<Ticket> products = new ArrayList<Ticket>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category_id", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<Ticket> ticket = new ArrayList<Ticket>();
 
 	//@ManyToOne
 	@JoinColumn(name = "parent_id")

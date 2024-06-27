@@ -27,6 +27,6 @@ public class Ticket {
 
     //@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
-    private Long categories;
+    private Long category_id;
 
 }
