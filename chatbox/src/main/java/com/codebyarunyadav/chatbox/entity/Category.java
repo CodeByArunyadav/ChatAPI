@@ -36,15 +36,15 @@ public class Category {
 
 	@Column(nullable = false)
 	private String categoryName;
-
+	 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categories", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<Product> products = new ArrayList<Product>();
+	private List<Ticket> products = new ArrayList<Ticket>();
 
-	@ManyToOne
+	//@ManyToOne
 	@JoinColumn(name = "parent_id")
-	@JsonIgnore
-	private Category parentId;
+	//@JsonIgnore
+	private Long parentId;
 
 	@OneToMany(mappedBy = "parentId")
 	private List<Category> subCategories = new ArrayList<>();

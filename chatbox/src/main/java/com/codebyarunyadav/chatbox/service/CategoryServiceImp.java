@@ -16,6 +16,7 @@ public class CategoryServiceImp implements CategoryService {
 	@Override
 	public Category saveCategory(Category category) {
 		// TODO Auto-generated method stub
+		System.out.println("Hello india"+ category.getParentId());
 		categoryRepository.save(category);
 		return null;
 	}
