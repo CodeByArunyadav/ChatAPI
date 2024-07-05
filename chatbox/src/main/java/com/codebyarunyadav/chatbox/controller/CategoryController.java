@@ -1,6 +1,7 @@
 package com.codebyarunyadav.chatbox.controller;
 
-import java.awt.PageAttributes.MediaType;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,26 +22,38 @@ public class CategoryController {
 	@Autowired
 	private CategoryServiceImp categoryService;
 
+	// Save operation
 	@RequestMapping(method = RequestMethod.POST, value = "/category/add")
 	public ResponseEntity<Boolean> addCategory(@RequestBody Category category) {
 		categoryService.saveCategory(category);
 		return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/category/get/by/id/{categoryId}")
-	public void getCategoryById(@PathVariable Long categoryId) {
-		categoryService.getCategoryById(categoryId);
+	// Update operation
+	@RequestMapping(method = RequestMethod.PUT, value = "/category/update")
+
+	public Category updateCategory(@RequestBody Category category, @PathVariable("id") Long categoryId) {
+		return categoryService.updateCategory(category, categoryId);
 	}
 
-	/*
-	 * @RequestMapping(method= RequestMethod.GET,
-	 * value="/category/get/by/name/{categoryName}") public void
-	 * getCategoryByName(@PathVariable String categoryName) {
-	 * categoryService.getAllCategoriesByName(categoryName); }
-	 */
+	// Read operation by ID
+	@RequestMapping(method = RequestMethod.GET, value = "/category/getbyid/{categoryId}")
+	public Category getCategoryById(@PathVariable Long categoryId) {
+		return categoryService.getCategoryById(categoryId);
+	}
 
+	// Read operation
 	@RequestMapping(method = RequestMethod.GET, value = "/all/category")
-	public void getCategories() {
-		categoryService.fetchCategoryList();
+	public ResponseEntity<List<Category>> getCategories() {
+		List<Category> listCategory = categoryService.fetchCategoryList();
+		return new ResponseEntity<List<Category>>(listCategory, HttpStatus.CREATED);
 	}
+
+	// Delete operation
+	@RequestMapping(method = RequestMethod.GET, value = "/category/deletbyid/{categoryId}")
+	public String deleteCategoryById(@PathVariable Long categoryId) {
+		categoryService.deleteCategoryById(categoryId);
+		return "This category ID Deleted Successfully.. ";
+	}
+
 }

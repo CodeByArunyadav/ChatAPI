@@ -1,6 +1,7 @@
 package com.codebyarunyadav.chatbox.service;
 
 import java.util.List;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class CategoryServiceImp implements CategoryService {
 	@Override
 	public Category saveCategory(Category category) {
 		// TODO Auto-generated method stub
-		System.out.println("Hello india"+ category.getParentId());
+		System.out.println("Hello india" + category.getParentId());
 		categoryRepository.save(category);
 		return null;
 	}
@@ -30,8 +31,17 @@ public class CategoryServiceImp implements CategoryService {
 	@Override
 	public Category updateCategory(Category category, Long categoryId) {
 		// TODO Auto-generated method stub
-		//categoryRepository.s
-		return null;
+		 System.out.println("save was initiated");
+		return categoryRepository.findById(categoryId).map(categoryUpdate -> {
+			//categoryUpdate.setId(categoryId);
+			categoryUpdate.setCategoryName(category.getCategoryName());
+			categoryUpdate.setParentId(category.getParentId());
+			return categoryRepository.save(categoryUpdate);
+           
+		}).orElseGet(() -> {
+			return categoryRepository.save(category);
+		});
+
 	}
 
 	@Override
@@ -41,9 +51,9 @@ public class CategoryServiceImp implements CategoryService {
 
 	}
 
-	public void getCategoryById(Long categoryId) {
+	public Category getCategoryById(Long categoryId) {
 		// TODO Auto-generated method stub
-		categoryRepository.getById(categoryId);
+		return categoryRepository.findById(categoryId).get();
 
 	}
 
