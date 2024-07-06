@@ -31,13 +31,13 @@ public class CategoryServiceImp implements CategoryService {
 	@Override
 	public Category updateCategory(Category category, Long categoryId) {
 		// TODO Auto-generated method stub
-		 System.out.println("save was initiated");
+		System.out.println("save was initiated");
 		return categoryRepository.findById(categoryId).map(categoryUpdate -> {
-			//categoryUpdate.setId(categoryId);
+			// categoryUpdate.setId(categoryId);
 			categoryUpdate.setCategoryName(category.getCategoryName());
 			categoryUpdate.setParentId(category.getParentId());
 			return categoryRepository.save(categoryUpdate);
-           
+
 		}).orElseGet(() -> {
 			return categoryRepository.save(category);
 		});

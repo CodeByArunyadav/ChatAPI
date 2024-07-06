@@ -30,9 +30,9 @@ public class CategoryController {
 	}
 
 	// Update operation
-	@RequestMapping(method = RequestMethod.PUT, value = "/category/update")
+	@RequestMapping(method = RequestMethod.PUT, value = "/category/update/{categoryId}")
 
-	public Category updateCategory(@RequestBody Category category, @PathVariable("id") Long categoryId) {
+	public Category updateCategory(@RequestBody Category category, @PathVariable Long categoryId) {
 		return categoryService.updateCategory(category, categoryId);
 	}
 
@@ -50,7 +50,7 @@ public class CategoryController {
 	}
 
 	// Delete operation
-	@RequestMapping(method = RequestMethod.GET, value = "/category/deletbyid/{categoryId}")
+	@RequestMapping(method = RequestMethod.DELETE, value = "/category/deletbyid/{categoryId}")
 	public String deleteCategoryById(@PathVariable Long categoryId) {
 		categoryService.deleteCategoryById(categoryId);
 		return "This category ID Deleted Successfully.. ";
