@@ -21,7 +21,12 @@ import com.codebyarunyadav.chatbox.service.CategoryServiceImp;
 public class CategoryController {
 	@Autowired
 	private CategoryServiceImp categoryService;
-
+	
+    @RequestMapping(value = "/")
+	public String mainIndexPage()
+	{
+    	return "index.html";
+	}
 	// Save operation
 	@RequestMapping(method = RequestMethod.POST, value = "/category/add")
 	public ResponseEntity<Boolean> addCategory(@RequestBody Category category) {
